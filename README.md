@@ -3,12 +3,11 @@
 This script maps query scaffolds to a reference containing two sex chromosomes (for example `X/Y` or `Z/W`) and classifies scaffolds based on non-overlapping aligned fraction.
 
 Scripts:
-- `xy_map_filter.sh` (main implementation)
-- `SexChromMinimapCall.sh` (neutral wrapper name)
+- `SexChromMinimapCall.sh` (main implementation)
 
 ## What it does
 
-`xy_map_filter.sh` supports two modes:
+`SexChromMinimapCall.sh` supports two modes:
 
 1. `map + filter` (default)
 - Runs `minimap2` to produce a PAF file.
@@ -38,7 +37,7 @@ This script merges overlapping query intervals per scaffold per target before co
 ### 1) Filter only from existing PAF
 
 ```bash
-./xy_map_filter.sh \
+./SexChromMinimapCall.sh \
   --filter-only \
   --paf Asia_black-Brown_xy.paf \
   --chr1 NC_079873.1 \
@@ -51,7 +50,7 @@ This script merges overlapping query intervals per scaffold per target before co
 ### 2) Map then filter
 
 ```bash
-./xy_map_filter.sh \
+./SexChromMinimapCall.sh \
   --query GCA_009660055.1_ASM966005v1_genomic_1Mb.fna \
   --target /path/to/XY_reference.fna \
   --paf Asia_black-Brown_xy.paf \
@@ -72,7 +71,7 @@ Required:
 
 Mapping inputs (unless `--filter-only`):
 - `--query`: query FASTA
-- `--target`: target FASTA containing X and Y
+- `--target`: target FASTA containing chr1 and chr2
 
 Filtering thresholds:
 - `--min-mapq` (default `30`): keep alignments with MAPQ >= this value
